@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <% include partials/head %> 
+</head>
+<body>
+  <header>
+    <% include partials/menu %>
+  </header>
+  <main class="mt-5 pt-5">
+    <section class="container">
+      <h4 class="text-muted">Manage Products</h4>
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-warning">Add a Product</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table caption-top table-hover">
+          <caption>
+            Products List
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">S/N</th>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Qty</th>
+              <th scope="col">Manage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td class="manage">
+                <a><i class="fas fa-edit"></i></a>
+                <a><i class="fas fa-trash-alt"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+              <td class="manage">
+                <a><i class="fas fa-edit"></i></a>
+                <a><i class="fas fa-trash-alt"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+              <td class="manage">
+                <a><i class="fas fa-edit"></i></a>
+                <a><i class="fas fa-trash-alt"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+<% include partials/script %>
+</html>
