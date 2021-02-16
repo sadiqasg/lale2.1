@@ -1,8 +1,12 @@
-// var express = require('express');
-// var router = express.Router();
+const express = require('express');
+const router  = express.Router(); 
+const adminController = require('../controllers/admin');
 
-// router.get('/', function (req, res, next) {
-//   res.render('error', { page: 'Admin' });
-// });
+router.post('/', adminController.postProduct);
 
-// module.exports = router;
+router.get('/', adminController.getAllProducts);
+router.get('/:id', adminController.getSingleProduct);
+
+router.get('/delete/:id', adminController.deleteProduct);
+
+module.exports = router;
