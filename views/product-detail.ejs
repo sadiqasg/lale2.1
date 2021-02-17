@@ -2,131 +2,50 @@
 <html lang="en">
 <head>
  <% include partials/head %> 
- <link rel="stylesheet" href="./stylesheets/admin.css">
+ <link rel="stylesheet" href="/stylesheets/product-detail.css">
 </head>
 <body>
   <header>
     <% include partials/menu %>
   </header>
-  <main class="mt-5 pt-5">
-    <section class="container">
-      <h4 class="text-muted">Manage Products</h4>
-      <div class="d-flex">
-        <button 
-          class="btn btn-warning shadow-none"
-          data-mdb-toggle="modal"
-          data-mdb-target="#addProductModal"
-        >Add a Product</button>
-        <button class="btn btn-danger shadow-none ms-2">Delete All Products</button>
-      </div>
-      <section class="add-product-modal">
-        <div
-          class="modal fade"
-          id="addProductModal"
-          tabindex="-1"
-          aria-labelledby="addProductModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="addProductModalLabel">New Product</h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-mdb-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <form action="/admin" method="POST">
-                  <div class="form-outline mb-4">
-                    <input type="text" name="name" class="form-control" />
-                    <label class="form-label" for="name">Name</label>
-                  </div>
-                  
-                  <div class="form-outline mb-4">
-                    <input type="text" name="description" class="form-control" />
-                    <label class="form-label" for="description">Description</label>
-                  </div>
-
-                  <div class="form-group mb-4">
-                    <label class="form-label" for="image">Upload Main Image</label>
-                    <input type="file" class="form-control" name="image" multiple />
-                  </div>
-
-                  <div class="form-group mb-4">
-                    <select name="collection" class="form-control">
-                      <option value="" class="text-muted" selected disabled>Set Collection</option>
-                    </select>
-                  </div>
-
-                  <div class="row mb-4">
-                    <div class="col">
-                      <div class="form-outline">
-                        <input type="text" name="price" class="form-control" />
-                        <label class="form-label" for="price">Price</label>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="form-outline">
-                        <input type="text" name="qty" class="form-control" />
-                        <label class="form-label" for="qty">Quantity</label>
-                      </div>
-                    </div>
-                  </div>
+    <main class="mt-5 pt-5 container">
+      <p class="m-0 text-red" onclick="goBack()" id="back"><i class="fas fa-caret-left"></i> Back</p>
+      <h4 class="mt-0 mb-3">Product Details</h4>
+      <div class="card mb-3">
+          <div class="row g-0 product-detail-card">
+              <div class="col-md-5">
+                <%if (product.image.length > 0) { %>
                 
-                  <button type="submit" class="btn btn-warning btn-block mb-4">Add</button>
-                </form>
+                <% } else { %>
+                  <img id="main" src="/uploads/<%=product.image%>" alt="..." class="img-fluid product-detail-img">
+                <% }  %>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-mdb-dismiss="modal">
-                  Cancel
-                </button>
+              <div class="col-md-7">
+                  <div class="card-body">
+                      <h3 class="card-title text-uppercase"><%=product.name%></h3>
+                      <p class="card-text text-muted text-uppercase"><%=product.description %></p>
+                      <div class="details">
+                          <div class="row">
+                              <div class="col">
+                                  <p class="card-text text-uppercase m-0 text-red">price</p>
+                                  <h2 class="m-0 text-muted"><%=product.price %></h2>
+                              </div>
+                              <div class="col">
+                                  <p class="card-text text-red text-uppercase m-0">quantity</p>
+                                  <h2 class="m-0 text-muted"><%=product.qty %></h2>
+                              </div>
+                          </div>
+                          <div class="images">
+                              <img onclick="change(this.src)" src="https://images.unsplash.com/photo-1509952328734-7fe1ccd67ec8?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=634&q=80" class="img-fluid rounded" alt="">
+                              <img onclick="change(this.src)" src="https://images.unsplash.com/photo-1517705008128-361805f42e86?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=979&q=80" class="img-fluid rounded" alt="">
+                              <img onclick="change(this.src)" src="https://images.unsplash.com/photo-1545241047-6083a3684587?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=634&q=80" class="img-fluid rounded" alt="">
+                          </div>
+                          <button class="btn mt-3 cart-btn btn-outline-red">Add to Cart</button>
+                      </div>
+                  </div>
               </div>
-            </div>
           </div>
-        </div>
-      </section>
-      <%if (products.length > 0) { %>
-        <div class="table-responsive mt-2">
-          <table class="table caption-top table-hover">
-            <caption>
-              Products List
-            </caption>
-            <thead>
-              <tr>
-                <th scope="col">S/N</th>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-                <th scope="col">Price</th>
-                <th scope="col">Qty</th>
-                <th scope="col">Manage</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% products.forEach((product, index) => { %>
-                <tr>
-                  <th scope="row"><%= index + 1 %></th>
-                  <td><%= product.name %></td>
-                  <td><%= product.description %></td>
-                  <td><%= product.price %></td>
-                  <td><%= product.qty %></td>
-                  <td class="manage">
-                    <a href="/admin/<%=product._id%>"><i class="fas fa-eye text-warning"></i></a>
-                    <a href="/admin/delete/<%=product._id%>"><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-              <% }); %>
-            </tbody>
-          </table>
-        </div>
-      <% } else { %>
-       <div class="d-flex justify-content-center">
-         <p>No products. Start adding products</p>
-       </div>
-      <% } %> 
-    </section>
+      </div>
   </main>
 </body>
 <% include partials/script %>

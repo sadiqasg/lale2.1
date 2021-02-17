@@ -41,7 +41,7 @@ const postProduct = (req, res, next) => {
       const newProduct = new Product({
         name: req.body.name,
         description: req.body.description ? req.body.description : 'N/A',
-        image: 'uploads/' + req.body.image,
+        image: req.body.image,
         collectionName: req.body.collection,
         price: formatPrice,
         qty: req.body.qty ? req.body.qty : 0,
@@ -50,7 +50,8 @@ const postProduct = (req, res, next) => {
       // save this object to database
       newProduct.save((err, data) => {
         if (err) return res.json({ Error: err });
-        return res.redirect("/admin");
+        // return res.redirect("/admin");
+        return res.json(data);
       })
       //if Product is in db, return a message to inform it exists            
     } else {
@@ -66,6 +67,7 @@ const getSingleProduct = (req, res, next) => {
     if (err || !data) {
       return res.json({ message: "Product not found" });
     }
+    // else return res.render('product-detail', { page: 'Details', product: data });
     else return res.json(data);
   });
 };
