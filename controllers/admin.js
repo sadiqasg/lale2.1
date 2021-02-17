@@ -1,6 +1,18 @@
+const multer = require('multer');
 const Product = require('../models/product');
 
 let products;
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+const uploadImg = multer({ storage: storage }).single('image');
+
 
 const getAllProducts = (req, res, next) => {
   Product.find({}, (err, data) => {
@@ -18,21 +30,27 @@ const postProduct = (req, res, next) => {
 
     //if Product not in db, add it
     if (data === null) {
+
+      let price = req.body.price;
+      let formatPrice = (new Intl.NumberFormat('en-NG', {
+        style: 'currency',
+        currency: 'NGN'
+      })).format(price)
+
       //create a new Product object using the Product model and req.body
       const newProduct = new Product({
         name: req.body.name,
-        description: req.body.description,
-        image: req.body.image,
+        description: req.body.description ? req.body.description : 'N/A',
+        image: 'uploads/' + req.body.image,
         collectionName: req.body.collection,
-        price: req.body.price,
-        qty: req.body.qty,
+        price: formatPrice,
+        qty: req.body.qty ? req.body.qty : 0,
       });
 
       // save this object to database
       newProduct.save((err, data) => {
         if (err) return res.json({ Error: err });
-        products.push(data);
-        return res.render('admin', { page: 'Home', products: products });
+        return res.redirect("/admin");
       })
       //if Product is in db, return a message to inform it exists            
     } else {
@@ -59,8 +77,7 @@ const deleteProduct = (req, res, next) => {
     if (err || !data) {
       return res.json({ message: "Product not found" });
     }
-    // else return res.render('admin', { page: 'Home', products: products });
-    else return res.json({ message: "deleted" });
+    else return res.redirect("/admin");
   });
 }
 
@@ -73,4 +90,4 @@ const absoluteCancel = (req, res, next) => {
   })
 }
 
-module.exports = { getAllProducts, getSingleProduct, postProduct, deleteProduct };
+module.exports = { getAllProducts, getSingleProduct, postProduct, deleteProduct, uploadImg };
