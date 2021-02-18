@@ -15,7 +15,7 @@ const uploadImg = multer({ storage: storage }).any('image');
 
 
 const getAllProducts = (req, res, next) => {
-  Product.find((err, data) => {
+  Product.find({}, (err, data) => {
     if (err) {
       return res.json({ Error: err });
     }
