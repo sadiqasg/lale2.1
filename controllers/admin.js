@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   }
 });
-const uploadImg = multer({ storage: storage }).single('image');
+const uploadImg = multer({ storage: storage }).any('image');
 
 
 const getAllProducts = (req, res, next) => {
@@ -37,11 +37,22 @@ const postProduct = (req, res, next) => {
         currency: 'NGN'
       })).format(price)
 
+      let filesArray = req.files;
+      let files = "";
+
+      if (filesArray.length > 1) {
+        for (var file in filesArray) {
+          files += filesArray[file].path + ","
+        }
+      } else {
+        files += req.files[0].path
+      }
+
       //create a new Product object using the Product model and req.body
       const newProduct = new Product({
         name: req.body.name,
         description: req.body.description ? req.body.description : 'N/A',
-        image: req.body.image,
+        image: files,
         collectionName: req.body.collection,
         price: formatPrice,
         qty: req.body.qty ? req.body.qty : 0,
@@ -50,8 +61,7 @@ const postProduct = (req, res, next) => {
       // save this object to database
       newProduct.save((err, data) => {
         if (err) return res.json({ Error: err });
-        // return res.redirect("/admin");
-        return res.json(data);
+        return res.redirect("/admin");
       })
       //if Product is in db, return a message to inform it exists            
     } else {
@@ -67,8 +77,15 @@ const getSingleProduct = (req, res, next) => {
     if (err || !data) {
       return res.json({ message: "Product not found" });
     }
-    // else return res.render('product-detail', { page: 'Details', product: data });
-    else return res.json(data);
+    else {
+      let img = data.image;
+      let images = img.split(",");
+      if (images.length > 1) {
+        return res.render('product-detail', { page: 'Details', product: data, images: images });
+      }
+      return res.render('product-detail', { page: 'Details', product: data, images: null });
+
+    }
   });
 };
 
@@ -88,8 +105,8 @@ const absoluteCancel = (req, res, next) => {
     if (err) {
       return res.json({ message: "Complete delete failed" });
     }
-    return res.json({ message: "Complete delete successful" });
+    return res.redirect('/admin');
   })
 }
 
-module.exports = { getAllProducts, getSingleProduct, postProduct, deleteProduct, uploadImg };
+module.exports = { getAllProducts, getSingleProduct, postProduct, deleteProduct, uploadImg, absoluteCancel };

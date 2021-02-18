@@ -8,5 +8,6 @@ router.get('/', adminController.getAllProducts);
 router.get('/:id', adminController.getSingleProduct);
 
 router.get('/delete/:id', adminController.deleteProduct);
+// router.get('/delete/all', adminController.absoluteCancel);
 
 module.exports = router;

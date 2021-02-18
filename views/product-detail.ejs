@@ -14,11 +14,11 @@
       <div class="card mb-3">
           <div class="row g-0 product-detail-card">
               <div class="col-md-5">
-                <%if (product.image.length > 0) { %>
-                
+                <% if (images != null) { %>
+                    <img id="main" src="/<%=images[0]%> " alt="prod-image" class="img-fluid product-detail-img">
                 <% } else { %>
-                  <img id="main" src="/uploads/<%=product.image%>" alt="..." class="img-fluid product-detail-img">
-                <% }  %>
+                    <img id="main" src="/<%=product.image%> " alt="prod-image" class="img-fluid product-detail-img">
+                <% } %>
               </div>
               <div class="col-md-7">
                   <div class="card-body">
@@ -36,11 +36,15 @@
                               </div>
                           </div>
                           <div class="images">
-                              <img onclick="change(this.src)" src="https://images.unsplash.com/photo-1509952328734-7fe1ccd67ec8?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=634&q=80" class="img-fluid rounded" alt="">
-                              <img onclick="change(this.src)" src="https://images.unsplash.com/photo-1517705008128-361805f42e86?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=979&q=80" class="img-fluid rounded" alt="">
-                              <img onclick="change(this.src)" src="https://images.unsplash.com/photo-1545241047-6083a3684587?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=634&q=80" class="img-fluid rounded" alt="">
+                            <% if (images != null) { %>
+                                <% images.forEach((image) => { %>
+                                    <img onclick="change(this.src)" src="/<%=image%> " class="img-fluid rounded" alt="">
+                                <% }) %> 
+                            <% } else { %>
+                                <img src="https://images.unsplash.com/photo-1513941025786-ed97f054ebba?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" class="img-fluid rounded" alt="">
+                            <% } %>
                           </div>
-                          <button class="btn mt-3 cart-btn btn-outline-red">Add to Cart</button>
+                          <!-- <button class="btn mt-3 cart-btn btn-outline-red">Add to Cart</button> -->
                       </div>
                   </div>
               </div>
@@ -49,4 +53,5 @@
   </main>
 </body>
 <% include partials/script %>
+<script src="/javascripts/productDetail.js"></script>
 </html>
