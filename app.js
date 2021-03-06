@@ -11,13 +11,6 @@ const adminRouter = require('./routes/admin');
 
 const app = express();
 
-const uri = process.env.ATLAS_URI;
-
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
-	.then(() => console.log('connected to Mongodb Atlas successfully!'))
-	.catch((err) => console.error(JSON.stringify(err)))
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -48,10 +41,4 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-// module.exports = app;
-
-const port = process.env.PORT || '3000';
-
-app.listen(port, () => {
-  console.log(`App running on port ${port}.`)
-})
+module.exports = app;
