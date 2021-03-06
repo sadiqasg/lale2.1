@@ -2,6 +2,9 @@
   "name": "lh",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www"
