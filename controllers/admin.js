@@ -15,10 +15,8 @@ const getAllProducts = (req, res, next) => {
   Product.find({}, (err, data) => {
     if (err) {
       return res.json({ Error: err });
-      console.log("There was an error", err);
     }
-    const products = data;
-    return res.render('admin', { page: 'Home', products: products });
+    return res.render('admin', { page: 'Home', products: data });
   })
 };
 
