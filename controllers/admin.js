@@ -17,7 +17,7 @@ const getAllProducts = (req, res, next) => {
       // return res.json({ Error: err });
       console.log("There was an error", err);
     }
-    products = data;
+    const products = data;
     return res.render('admin', { page: 'Home', products: products });
   })
 };
