@@ -1,6 +1,13 @@
 const multer = require('multer');
 const Product = require('../models/product');
 
+const mongoose = require('mongoose');
+const uri = process.env.ATLAS_URI;
+
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+	.then(() => console.log('connected to Mongodb Atlas successfully!'))
+	.catch((err) => console.error(JSON.stringify(err)))
+
 let products;
 
 const storage = multer.diskStorage({
