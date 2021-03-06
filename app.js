@@ -13,7 +13,7 @@ const app = express();
 
 const uri = process.env.ATLAS_URI;
 
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://saslale:sasLaleDB@cluster0.6obt8.mongodb.net/development?retryWrites=true&w=majority', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
 	.then(() => console.log('connected to Mongodb Atlas successfully!'))
 	.catch((err) => console.error(JSON.stringify(err)))
 
