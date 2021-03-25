@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <% include ../partials/head %> 
+ <link rel="stylesheet" href="./stylesheets/main.css">
+ <link rel="stylesheet" href="./stylesheets/product-detail.css">
+</head>
+<body>
+  
+  <header>
+    <% include ../partials/menu %>
+  </header>
+  
+  <main class="mt-5 pt-5 container">
+    <p class="m-0 text-red" onclick="goBack()" id="back"><i class="fas fa-caret-left"></i> Back</p>
+    <h4 class="mt-0 mb-3">Product Details</h4>
+    <div class="card mb-3">
+        <div class="row g-0 product-detail-card">
+            <div class="col-md-5">
+                <img id="main" src="https://images.unsplash.com/photo-1467043153537-a4fba2cd39ef?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=661&q=80" alt="..." class="img-fluid product-detail-img">
+            </div>
+            <div class="col-md-7">
+                <div class="card-body">
+                    <h3 class="card-title text-uppercase">Product name</h3>
+                    <p class="card-text text-muted text-uppercase">White Colour</p>
+                    <div class="details">
+                        <div class="row">
+                            <div class="col">
+                                <p class="card-text text-uppercase m-0 text-red">price</p>
+                                <h2 class="m-0 text-muted">N100,000</h2>
+                            </div>
+                            <div class="col">
+                                <p class="card-text text-red text-uppercase m-0">quantity</p>
+                                <h2 class="m-0 text-muted">3</h2>
+                            </div>
+                        </div>
+                        <div class="images">
+                            <img onclick="change(this.src)" src="https://images.unsplash.com/photo-1509952328734-7fe1ccd67ec8?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=634&q=80" class="img-fluid rounded" alt="">
+                            <img onclick="change(this.src)" src="https://images.unsplash.com/photo-1517705008128-361805f42e86?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=979&q=80" class="img-fluid rounded" alt="">
+                            <img onclick="change(this.src)" src="https://images.unsplash.com/photo-1545241047-6083a3684587?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=634&q=80" class="img-fluid rounded" alt="">
+                        </div>
+                        <button class="btn mt-3 cart-btn btn-outline-red">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="bg-light text-center text-lg-start">
+    <!-- Grid container -->
+    <div class="container p-4">
+        <!--Grid row-->
+        <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="#!" class="">Terms & Conditions</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="">FAQs</a>
+                    </li>
+                </ul>
+            </div>
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-center">Connect with Us</h5>
+                <ul class="list-group list-group-horizontal justify-content-center">
+                    <li class="list-group-item">
+                        <i class="fab fa-twitter"></i>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fab fa-instagram"></i>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fab fa-facebook"></i>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fab fa-whatsapp"></i>
+                    </li>
+                </ul>
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+    </div>
+    <!-- Grid container -->
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2021: Lalehousehold | by
+        <a class="text-dark" href="https://saslamp.github.io/">SL</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+
+</body>
+<% include ../partials/script %>
+<script src="/javascripts/productDetail.js"></script>
+
+</html>

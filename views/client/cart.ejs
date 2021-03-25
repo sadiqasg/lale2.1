@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <% include ../partials/head %> 
+ <link rel="stylesheet" href="./stylesheets/cart.css">
+</head>
+<body>
+  
+  <header>
+    <% include ../partials/menu %>
+  </header>
+  
+  <main class="mt-5 pt-5 container" style="height: 100vh;">
+    <h4 class="mt-0 mb-3">Cart | <span class="text-beige">Checkout</span> </h4>
+    <hr/>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item d-flex justify-content-around">
+        <div>
+          <figure class="figure">
+            <img id="product-image" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80" alt="product-image">
+            <figcaption class="figure-caption">Product name</figcaption>
+          </figure>
+        </div>
+        <div class="d-flex align-items-center">
+          <div class="flex-column">
+            <p class="mb-0 text-warning text-uppercase">price</p>
+            <h4 class="mt-0">N10,000</h4>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <button class="btn btn-danger"><i class="fas fa-minus-circle"></i></button>
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-around">
+        <div>
+          <figure class="figure">
+            <img id="product-image" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80" alt="product-image">
+            <figcaption class="figure-caption">Product name</figcaption>
+          </figure>
+        </div>
+        <div class="d-flex align-items-center">
+          <div class="flex-column">
+            <p class="mb-0 text-warning text-uppercase">price</p>
+            <h4 class="mt-0">N10,000</h4>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <button class="btn btn-danger"><i class="fas fa-minus-circle"></i></button>
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-around">
+        <div>
+          <figure class="figure">
+            <img id="product-image" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80" alt="product-image">
+            <figcaption class="figure-caption">Product name</figcaption>
+          </figure>
+        </div>
+        <div class="d-flex align-items-center">
+          <div class="flex-column">
+            <p class="mb-0 text-warning text-uppercase">price</p>
+            <h4 class="mt-0">N10,000</h4>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <button class="btn btn-danger"><i class="fas fa-minus-circle"></i></button>
+        </div>
+      </li>
+    </ul>
+    <hr/>
+    <section class="container">
+      <div class="d-flex justify-content-center">
+          <p class="text-uppercase">total</p>
+          <h4 class="mx-4">N100,000</h4>
+      </div>
+      <div class="text-center">
+        <button class="btn col-4 btn-warning">Pay</button>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+<% include ../partials/script %>
+<script src="/javascripts/cart.js"></script>
+
+</html>
