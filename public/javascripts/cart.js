@@ -14,6 +14,7 @@ if (!prodArray) {
   console.error('empty prodArray in storage')
 }
 productArray.push(prodArray);
+cartItemNum.innerHTML = productArray[0].length;
 
 const cartHTML = item => {
   return `

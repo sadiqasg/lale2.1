@@ -5,9 +5,14 @@ const get = element => {
 var productArray = [];
 var productObj = {};
 
+const cartItemNum = get('cart-item-number');
 const itemImage = get('item-image').src;
 const itemName = get('item-name').innerHTML;
 const itemPrice = get('item-price').innerHTML;
+
+const updateCartNumber = () => {
+  cartItemNum.innerHTML = productArray[0].length;
+}
 
 const addToCart = () => {
   if (!localStorage) {
@@ -23,7 +28,11 @@ const addToCart = () => {
       return alert("product already in the cart")
     }
   }
+  // get current product array
+  const prodArray = JSON.parse(localStorage.getItem("lale:productArray"));
+  productArray = prodArray;
   productArray.push(productObj);
   localStorage.setItem("lale:productArray", JSON.stringify(productArray));
-  alert("Item added to cart")
+  alert("Item added to cart");
+  updateCartNumber();
 }
