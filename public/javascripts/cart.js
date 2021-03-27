@@ -2,48 +2,18 @@ const get = element => {
   return document.querySelector('.' + element);
 }
 
-const itemImage = get('item-image').src;
-const itemName = get('item-name').innerHTML;
-const itemPrice = get('item-price').innerHTML;
+const productArraySection = get('product-array');
+const cartItemNum = get('cart-item-number');
 
 var productArray = [];
-var productObj = {};
 
 // check & get product array from local storage 
-try {
-  let prodArray = localStorage.getItem("lale:productArray") ? localStorage.getItem("lale:productArray") : [];
-  if (productArray) {
-    productArray = JSON.parse(prodArray);
-  }
-}
-catch (err) {
-  alert("oops", err)
-}
+const prodArray = JSON.parse(localStorage.getItem("lale:productArray"));
 
-const addToCart = () => {
-  if (!localStorage) {
-    return alert("local storage not supported");
-  }
-
-  productObj.image = itemImage;
-  productObj.name = itemName;
-  productObj.itemPrice = itemPrice;
-
-  for (let prod in productArray) {
-    if (productArray[prod].name == itemName) {
-      return alert("product already in the cart")
-    }
-  }
-  productArray.push(productObj);
-  localStorage.setItem("lale:productArray", JSON.stringify(productArray));
-  alert("Item added to cart")
+if (!prodArray) {
+  console.error('empty prodArray in storage')
 }
-
-const getCartItems = () => {
-  if (productArray.length > 0) {
-    
-  }
-}
+productArray.push(prodArray);
 
 const cartHTML = item => {
   return `
@@ -57,7 +27,7 @@ const cartHTML = item => {
       <div class="d-flex align-items-center">
         <div class="flex-column">
           <p class="mb-0 text-warning text-uppercase">price</p>
-          <h4 class="mt-0">${item.price}</h4>
+          <h4 class="mt-0">${item.itemPrice}</h4>
         </div>
       </div>
       <div class="d-flex align-items-center">
@@ -66,3 +36,15 @@ const cartHTML = item => {
   </li>
   `
 }
+
+const getCartItems = () => {
+  let cart = "";
+  if (productArray.length > 0) {
+    for (let prod in productArray[0]) {
+      cart += cartHTML(productArray[0][prod])
+    }
+    productArraySection.innerHTML = cart;
+  }
+}
+getCartItems();
+
