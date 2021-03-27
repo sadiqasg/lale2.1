@@ -32,7 +32,7 @@ const cartHTML = item => {
         </div>
       </div>
       <div class="d-flex align-items-center">
-        <button class="btn btn-danger"><i class="fas fa-minus-circle"></i></button>
+        <button class="btn btn-danger" onclick="deleteItem()"><i class="fas fa-minus-circle"></i></button>
       </div>
   </li>
   `
@@ -49,3 +49,6 @@ const getCartItems = () => {
 }
 getCartItems();
 
+const deleteItem = () => {
+  alert('deleting disabled\nwill be back up in a bit')
+}
