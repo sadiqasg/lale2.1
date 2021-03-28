@@ -44,11 +44,17 @@ const getCartItems = () => {
     for (let prod in productArray[0]) {
       cart += cartHTML(productArray[0][prod])
     }
-    productArraySection.innerHTML = cart;
+    if (productArraySection) {
+      productArraySection.innerHTML = cart;
+    }
   }
 }
 getCartItems();
 
 const deleteItem = () => {
   alert('deleting disabled\nwill be back up in a bit')
+}
+
+const totalCartPrice = () => {
+  
 }

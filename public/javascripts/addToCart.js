@@ -1,11 +1,7 @@
-const get = element => {
-  return document.querySelector('.' + element);
-}
 
 var productArray = [];
 var productObj = {};
 
-const cartItemNum = get('cart-item-number');
 const itemImage = get('item-image').src;
 const itemName = get('item-name').innerHTML;
 const itemPrice = get('item-price').innerHTML;
