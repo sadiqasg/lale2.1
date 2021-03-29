@@ -16,7 +16,7 @@ const getAllProducts = (req, res, next) => {
     if (err) {
       return res.send({ "Failed": err });
     }
-    return res.render('admin', { page: 'Home', products: data });
+    return res.render('admin', { page: 'Admin', products: data });
   })
 };
 
@@ -41,7 +41,7 @@ const postProduct = (req, res, next) => {
           files += filesArray[file].path + ","
         }
       } else {
-        files += req.files.path // rmbr: i removed [0] in files[0]
+        files += req.files[0].path // rmbr: i removed [0] in files[0]
       }
 
       //create a new Product object using the Product model and req.body

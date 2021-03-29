@@ -7,6 +7,7 @@ const getKitchenProducts = (req, res, next) => {
     if (err) {
       return res.send({ "Failed": err });
     }
+    // console.log(data)
     res.render('client/kitchen', { page: 'Kitchen', products: data })
   })
 };
@@ -14,22 +15,3 @@ const getKitchenProducts = (req, res, next) => {
 module.exports = {
   getKitchenProducts
 }
-
-// const getSingleProduct = (req, res, next) => {
-//   let id = req.params.id;
-
-//   Product.findOne({ _id: id }, (err, data) => {
-//     if (err || !data) {
-//       return res.json({ message: "Product not found" });
-//     }
-//     else {
-//       let img = data.image;
-//       let images = img.split(",");
-//       if (images.length > 1) {
-//         return res.render('product-detail', { page: 'Details', product: data, images: images });
-//       }
-//       return res.render('product-detail', { page: 'Details', product: data, images: null });
-
-//     }
-//   });
-// };
