@@ -12,6 +12,16 @@ const getKitchenProducts = (req, res, next) => {
   })
 };
 
+const getSofaProducts = (req, res, next) => {
+  Product.find({ collectionName: 'sofa' }, (err, data) => {
+    if (err) {
+      return res.send({ "Failed": err });
+    }
+    res.render('client/chairs-sofa', { page: 'Sofa', products: data })
+  })
+}
+
 module.exports = {
-  getKitchenProducts
+  getKitchenProducts,
+  getSofaProducts
 }

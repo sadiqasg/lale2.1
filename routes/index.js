@@ -8,10 +8,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/kitchen', clientController.getKitchenProducts);
-
-router.get('/chairs_sofa', function (req, res, next) {
-  res.render('client/chairs-sofa', { page: 'Chairs and Sofa' })
-});
+router.get('/chairs_sofa', clientController.getSofaProducts);
 
 router.get('/pd', function (req, res, next) {
   res.render('client/details', { page: 'Product Details' });
