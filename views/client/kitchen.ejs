@@ -71,11 +71,12 @@
         <% products.forEach((product, index) => { %>
           <div class="col">
             <div class="card h-100 shadow-none">
-                <% if (!product.image.length > 1) { %>
-                    <img class="card-img-top item-image" src="/<%= product.image %>" alt="...">
+                <% if (product.image.split(",").length > 1) { %>
+                    <% var images = product.image.split(",") %>
+                    <img class="card-img-top item-image" src="/<%= images[0] %>" alt="product_image">
                 <% } else { %>
-                    <img class="card-img-top item-image" src="/<%= product.image %>" alt="...">
-                <% } %>
+                    <img class="card-img-top item-image" src="/<%= product.image %>" alt="product_image">
+                <% } %> 
                 <div class="card-body">
                     <p class="card-text item-name"><%= product.name %></p>
                     <h5 class="card-title item-price"><%= product.price %></h5>

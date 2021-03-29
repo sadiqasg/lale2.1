@@ -9,8 +9,6 @@ router.get('/', function (req, res, next) {
 
 router.get('/kitchen', clientController.getKitchenProducts);
 
-  // res.render('client/kitchen', { page: 'Kitchen Collection' })
-
 router.get('/chairs_sofa', function (req, res, next) {
   res.render('client/chairs-sofa', { page: 'Chairs and Sofa' })
 });

@@ -3,7 +3,7 @@ const Product = require('../models/product');
 let products;
 
 const getKitchenProducts = (req, res, next) => {
-  Product.find({name: 'doc'}, (err, data) => {
+  Product.find({ name: 'doc' }, (err, data) => {
     if (err) {
       return res.send({ "Failed": err });
     }

@@ -23,7 +23,8 @@
           <h4 class="mx-4">N100,000</h4>
       </div>
       <div class="text-center">
-        <button class="btn col-4 btn-warning">Pay</button>
+        <script src="https://checkout.flutterwave.com/v3.js"></script>
+        <button class="btn col-4 btn-warning" onclick="makePayment()">Pay Now</button>
       </div>
     </section>
 
@@ -32,5 +33,6 @@
 </body>
 <% include ../partials/script %>
 <script src="/javascripts/cart.js"></script>
+<script src="/javascripts/flutterwave.js"></script>
 
 </html>
