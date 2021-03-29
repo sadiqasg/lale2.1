@@ -5,6 +5,9 @@ const get = element => {
 const productArraySection = get('product-array');
 const cartItemNum = get('cart-item-number');
 
+const emptyCart = get('empty-cart');
+const totalContainer = get('total-container');
+
 var productArray = [];
 
 // check & get product array from local storage 
@@ -28,11 +31,11 @@ const cartHTML = item => {
       <div class="d-flex align-items-center">
         <div class="flex-column">
           <p class="mb-0 text-warning text-uppercase">price</p>
-          <h4 class="mt-0">${item.itemPrice}</h4>
+          <h4 class="mt-0 amount">${item.itemPrice}</h4>
         </div>
       </div>
       <div class="d-flex align-items-center">
-        <button class="btn btn-danger" onclick="deleteItem()"><i class="fas fa-minus-circle"></i></button>
+        <button class="btn btn-danger" onclick="deleteItem('${item.name}')"><i class="fas fa-minus-circle"></i></button>
       </div>
   </li>
   `
@@ -40,6 +43,7 @@ const cartHTML = item => {
 
 const getCartItems = () => {
   let cart = "";
+  let emptyHtml = "<p>Cart Is Empty...</p>";
   if (productArray.length > 0) {
     for (let prod in productArray[0]) {
       cart += cartHTML(productArray[0][prod])
@@ -47,14 +51,32 @@ const getCartItems = () => {
     if (productArraySection) {
       productArraySection.innerHTML = cart;
     }
+    totalContainer.style.display = "block";
+  } 
+  if (productArray[0].length == 0) {
+    productArraySection.innerHTML = emptyHtml;
+    totalContainer.style.display = "none";
   }
 }
 getCartItems();
 
-const deleteItem = () => {
-  alert('deleting disabled\nwill be back up in a bit')
+const deleteItem = name => {
+  let store = JSON.parse(localStorage.getItem("lale:productArray"));
+  for (let i = 0; i < store.length; i++) {
+    if (store[i].name == name) {
+      store.splice(i, 1);
+    }
+  }
+  localStorage.setItem("lale:productArray", JSON.stringify(store))
+  location.reload();
 }
 
-const totalCartPrice = () => {
-  
-}
+
+// function arrayRemove(arr, value) { 
+
+//   return arr.filter(function(ele){ 
+//       return ele != value; 
+//   });
+// }
+
+// var result = arrayRemove(array, 6);

@@ -41,7 +41,7 @@ const postProduct = (req, res, next) => {
           files += filesArray[file].path + ","
         }
       } else {
-        files += req.files.path // i removed [0] in files[0]
+        files += req.files.path // rmbr: i removed [0] in files[0]
       }
 
       //create a new Product object using the Product model and req.body

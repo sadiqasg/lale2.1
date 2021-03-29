@@ -70,7 +70,7 @@
       
         <% products.forEach((product, index) => { %>
           <div class="col">
-            <div class="card h-100 shadow-none">
+            <div class="card h-100 shadow-none prod">
                 <% if (product.image.split(",").length > 1) { %>
                     <% var images = product.image.split(",") %>
                     <img class="card-img-top item-image" src="/<%= images[0] %>" alt="product_image">
@@ -82,7 +82,7 @@
                     <h5 class="card-title item-price"><%= product.price %></h5>
                     <div class="card-footer">
                         <a class="btn btn-beige shadow-none" href="/admin/<%=product._id%>">View</a>
-                        <button class="btn btn-red shadow-none" onclick="addToCart()">Add to Cart</button>
+                        <button class="btn btn-red shadow-none" onclick="addToCart(this.id)" id="<%= index %>">Add to Cart</button>
                     </div>
                 </div>
             </div>
