@@ -1,6 +1,10 @@
-
 var productArray = [];
 var productObj = {};
+var pa = new Array();
+
+console.log('new parr',productArray, productArray.length, productArray[0]);
+console.log('other method', pa, pa.length, pa[0]);
+return;
 
 // const itemImage = get('item-image').src;
 // const itemName = get('item-name').innerHTML;
@@ -25,15 +29,25 @@ const addToCart = id => {
   productObj.name = itemName;
   productObj.itemPrice = itemPrice;
 
-  for (let prod in productArray) {
-    if (productArray[prod].name == itemName) {
-      return alert("product already in the cart")
-    }
-  }
+  // if (productArray) {
+  //   for (let prod in productArray) {
+  //     if (productArray[prod].name == itemName) {
+  //       return alert("product already in the cart")
+  //     }
+  //   }
+  // }
+
   // get current product array
   const prodArray = JSON.parse(localStorage.getItem("lale:productArray"));
-  productArray = prodArray;
-  productArray.push(productObj);
+
+
+  if (prodArray) {
+    productArray = prodArray;
+    productArray.push(productObj);
+  } else {
+    productArray.push(productObj);
+  }
+
   localStorage.setItem("lale:productArray", JSON.stringify(productArray));
   alert("Item added to cart");
   updateCartNumber();

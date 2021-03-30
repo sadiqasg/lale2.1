@@ -2,7 +2,7 @@ const get = element => {
   return document.querySelector('.' + element);
 }
 
-alert('use those test details i gave you');
+// alert('remember, use those test details i gave you');
 
 let emptyHtml = "<p>Cart Is Empty...</p>";
 
@@ -16,13 +16,15 @@ var productArray = [];
 
 // check & get product array from local storage 
 const prodArray = JSON.parse(localStorage.getItem("lale:productArray"));
-
+console.log('pas',productArraySection)
 if (!prodArray) {
   console.error('empty prodArray in storage')
-  productArraySection.innerHTML = emptyHtml;
+  // productArraySection.innerHTML = emptyHtml;
 }
 productArray.push(prodArray);
-cartItemNum.innerHTML = productArray[0].length;
+if (productArray[0]) {
+  cartItemNum.innerHTML = productArray[0].length;
+}
 
 const cartHTML = item => {
   return `
