@@ -2,6 +2,8 @@ const get = element => {
   return document.querySelector('.' + element);
 }
 
+alert('use those test details i gave you');
+
 let emptyHtml = "<p>Cart Is Empty...</p>";
 
 const productArraySection = get('product-array');
