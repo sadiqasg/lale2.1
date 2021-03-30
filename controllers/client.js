@@ -12,7 +12,7 @@ const getKitchenProducts = (req, res, next) => {
 };
 
 const getSofaProducts = (req, res, next) => {
-  Product.find({ name: 'doc' }, (err, data) => {
+  Product.find({ collectionName: 'homedeco' }, (err, data) => {
     if (err) {
       return res.send({ "Failed": err });
     }
