@@ -2,6 +2,8 @@ const get = element => {
   return document.querySelector('.' + element);
 }
 
+let emptyHtml = "<p>Cart Is Empty...</p>";
+
 const productArraySection = get('product-array');
 const cartItemNum = get('cart-item-number');
 
@@ -15,6 +17,7 @@ const prodArray = JSON.parse(localStorage.getItem("lale:productArray"));
 
 if (!prodArray) {
   console.error('empty prodArray in storage')
+  productArraySection.innerHTML = emptyHtml;
 }
 productArray.push(prodArray);
 cartItemNum.innerHTML = productArray[0].length;
@@ -43,7 +46,6 @@ const cartHTML = item => {
 
 const getCartItems = () => {
   let cart = "";
-  let emptyHtml = "<p>Cart Is Empty...</p>";
   if (productArray.length > 0) {
     for (let prod in productArray[0]) {
       cart += cartHTML(productArray[0][prod])
