@@ -1,10 +1,5 @@
 var productArray = [];
 var productObj = {};
-var pa = new Array();
-
-console.log('new parr',productArray, productArray.length, productArray[0]);
-console.log('other method', pa, pa.length, pa[0]);
-return;
 
 // const itemImage = get('item-image').src;
 // const itemName = get('item-name').innerHTML;
@@ -12,7 +7,8 @@ return;
 
 
 const updateCartNumber = () => {
-  cartItemNum.innerHTML = productArray[0].length;
+  cartItemNum.innerHTML = productArray.length;
+  console.log(productArray.length);
 }
 
 const addToCart = id => {
@@ -24,27 +20,26 @@ const addToCart = id => {
   let itemName = thisClicked.closest('.prod').querySelector('.item-name').innerHTML;
   let itemPrice = thisClicked.closest('.prod').querySelector('.item-price').innerHTML;
 
-  
+
   productObj.image = itemImage;
   productObj.name = itemName;
   productObj.itemPrice = itemPrice;
 
-  // if (productArray) {
-  //   for (let prod in productArray) {
-  //     if (productArray[prod].name == itemName) {
-  //       return alert("product already in the cart")
-  //     }
-  //   }
-  // }
 
   // get current product array
   const prodArray = JSON.parse(localStorage.getItem("lale:productArray"));
 
-
   if (prodArray) {
     productArray = prodArray;
+    // check duplicate product
+    for (let prod in productArray) {
+      if (productArray[prod].name == itemName) {
+        return alert("product already in the cart")
+      }
+    }
     productArray.push(productObj);
   } else {
+    productArray.length = 0
     productArray.push(productObj);
   }
 
