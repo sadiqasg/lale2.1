@@ -16,7 +16,7 @@ const getSofaProducts = (req, res, next) => {
     if (err) {
       return res.send({ "Failed": err });
     }
-    res.render('client/homedeco', { page: 'Sofa', products: data })
+    res.render('client/homedeco', { page: 'Homedeco', products: data })
   })
 };
 
