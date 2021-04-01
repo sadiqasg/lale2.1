@@ -84,7 +84,10 @@ function makePayment() {
       flw_ref = response.tx.flwRef;// collect flwRef returned and pass to a server page to complete status check.
       console.log("This is the response returned after a charge", response);
       if (response.tx.chargeResponse == '00' || response.tx.chargeResponse == '0') {
-        localStorage.removeItem("lale:productArray");
+
+        let store = [];
+        localStorage.setItem("lale:productArray", JSON.stringify(store))
+        // localStorage.removeItem("lale:productArray");
         location.reload();
       } else {
         console.log('omo')
