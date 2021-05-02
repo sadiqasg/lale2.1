@@ -16,10 +16,10 @@ var productArray = [];
 
 // check & get product array from local storage 
 const prodArray = JSON.parse(localStorage.getItem("lale:productArray"));
-console.log('pas',productArraySection)
+
 if (!prodArray) {
-  console.error('empty prodArray in storage')
-  // productArraySection.innerHTML = emptyHtml;
+  console.error('empty prodArray in storage');
+  totalContainer.innerHTML.style.display = "none";
 }
 productArray.push(prodArray);
 if (productArray[0]) {
@@ -58,8 +58,9 @@ const getCartItems = () => {
       productArraySection.innerHTML = cart;
     }
     totalContainer.style.display = "block";
-  } 
-  if (productArray[0].length == 0) {
+  }
+  if (prodArray && productArray[0].length == 0) {
+    alert('removed')
     productArraySection.innerHTML = emptyHtml;
     totalContainer.style.display = "none";
   }

@@ -49,29 +49,25 @@
                 ></button>
               </div>
               <div class="modal-body container">
-                <section id="error" class="bg-danger p-2 mb-2" style="display: none;">
-                  <p class="text-light m-0" id="missing" style="display: none;">Some fields are missing</p>
-                  <p class="text-light m-0" id="email-error" style="display: none;">Incorrect Email</p>
-                </section>
-                <div class="form-outline mb-4">
-                  <input type="text" id="username" class="form-control" />
-                  <label class="form-label" for="username">Your name</label>
-                </div>
-                <div class="form-outline mb-4">
-                  <input type="email" id="email" class="form-control" validate/>
-                  <label class="form-label" for="email">Email address</label>
-                </div>
-                <div class="form-outline mb-4">
-                  <input type="number" id="pnumber" class="form-control" required />
-                  <label class="form-label" for="pnumber">Phone number</label>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-mdb-dismiss="modal">
-                  Close
-                </button>
-                <!-- <script src="https://checkout.flutterwave.com/v3.js"></script> -->
-                <button class="btn col-4 btn-success" onclick="makePayment()">Pay Now</button>
+                <form id="paymentForm">
+                  <section id="error" class="bg-danger p-2 mb-2" style="display: none;">
+                    <p class="text-light m-0" id="missing" style="display: none;">Some fields are missing</p>
+                    <p class="text-light m-0" id="email-error" style="display: none;">Incorrect Email</p>
+                  </section>
+                  <div class="form-outline mb-4">
+                    <input type="text" id="username" class="form-control" />
+                    <label class="form-label" for="username">Your name</label>
+                  </div>
+                  <div class="form-outline mb-4">
+                    <input type="email" id="email" class="form-control" validate/>
+                    <label class="form-label" for="email">Email address</label>
+                  </div>
+                  <div class="form-outline mb-4">
+                    <input type="number" id="pnumber" class="form-control" required />
+                    <label class="form-label" for="pnumber">Phone number</label>
+                  </div>
+                  <button class="btn col-4 btn-success" onclick="payWithPaystack()">Pay Now</button>
+                </form>
               </div>
             </div>
           </div>
@@ -84,7 +80,6 @@
 </body>
 <% include ../partials/script %>
 <script src="/javascripts/cart.js"></script>
-<script type="text/javascript" src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
-<script src="/javascripts/flutterwave.js"></script>
+<script src="/javascripts/pay.js"></script>
 
 </html>

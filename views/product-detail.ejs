@@ -15,24 +15,24 @@
           <div class="row g-0 product-detail-card">
               <div class="col-md-5">
                 <% if (images != null) { %>
-                    <img id="main" src="/<%=images[0]%> " alt="prod-image" class="img-fluid product-detail-img">
+                    <img id="main" src="/<%=images[0]%> " alt="prod-image" class="img-fluid product-detail-img item-image">
                 <% } else { %>
-                    <img id="main" src="/<%=product.image%> " alt="prod-image" class="img-fluid product-detail-img">
+                    <img id="main" src="/<%=product.image%> " alt="prod-image" class="img-fluid product-detail-img item-image">
                 <% } %>
               </div>
               <div class="col-md-7">
                   <div class="card-body">
-                      <h3 class="card-title text-uppercase"><%=product.name%></h3>
+                      <h3 class="card-title text-uppercase item-name"><%=product.name%></h3>
                       <p class="card-text text-muted text-uppercase"><%=product.description %></p>
                       <div class="details">
                           <div class="row">
                               <div class="col">
                                   <p class="card-text text-uppercase m-0 text-red">price</p>
-                                  <h2 class="m-0 text-muted"><%=product.price %></h2>
+                                  <h2 class="m-0 text-muted item-price"><%=product.price %></h2>
                               </div>
                               <div class="col">
-                                  <p class="card-text text-red text-uppercase m-0">quantity</p>
-                                  <h2 class="m-0 text-muted"><%=product.qty %></h2>
+                                  <!-- <p class="card-text text-red text-uppercase m-0">quantity</p> -->
+                                  <!-- <h2 class="m-0 text-muted"><%=product.qty %></h2> -->
                               </div>
                           </div>
                           <div class="images">
@@ -44,14 +44,65 @@
                                 <img src="https://images.unsplash.com/photo-1513941025786-ed97f054ebba?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" class="img-fluid rounded" alt="">
                             <% } %>
                           </div>
-                          <!-- <button class="btn mt-3 cart-btn btn-outline-red">Add to Cart</button> -->
+
+                        <button onclick="addID()" id="12" class="btn btn-warning  mt-3 cart-btn btn-outline-red">Add to Cart</button>
                       </div>
                   </div>
               </div>
           </div>
       </div>
+      <!-- Modal -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-mdb-toggle="modal"
+        data-mdb-target="#cartConfirm"
+        id="showModal"
+        style="display: none;"
+        >
+        Launch demo modal
+    </button>
+    <button onclick="abtn()">another brn</button>
+
+    <div
+        class="modal fade"
+        id="cartConfirm"
+        tabindex="-1"
+        aria-labelledby="cartConfirmLabel"
+        aria-hidden="true"
+        >
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title w-100 text-center" id="cartConfirmLabel">Product added to your cart!</h5>
+            <button
+                type="button"
+                class="btn-close"
+                data-mdb-dismiss="modal"
+                aria-label="Close"
+            ></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <a class="btn btn-warning" href="/cart">Proceed to Checkout</a>
+                    <a class="btn btn-info" href="/">Go back Home</a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
   </main>
 </body>
 <% include partials/script %>
 <script src="/javascripts/productDetail.js"></script>
+<script src="/javascripts/addProductToCart.js"></script>
+<script>
+    function addID() {
+        let currentURL = window.location.pathname;
+        id = currentURL.substring(currentURL.lastIndexOf('/') + 1);
+        
+        addProductToCart(id);
+        
+    }
+</script>
 </html>
