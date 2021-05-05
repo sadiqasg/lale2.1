@@ -32,7 +32,7 @@ const cartHTML = item => {
       <div>
         <figure class="figure">
           <img id="product-image" src="${item.image}" alt="product-image">
-          <figcaption class="figure-caption">${item.name}</figcaption>
+          <figcaption class="figure-caption singeItemName">${item.name}</figcaption>
         </figure>
       </div>
       <div class="d-flex align-items-center">
@@ -60,7 +60,7 @@ const getCartItems = () => {
     totalContainer.style.display = "block";
   }
   if (prodArray && productArray[0].length == 0) {
-    alert('removed')
+    // alert('removed')
     productArraySection.innerHTML = emptyHtml;
     totalContainer.style.display = "none";
   }

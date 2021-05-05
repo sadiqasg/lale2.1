@@ -1,4 +1,6 @@
-
+window.onload = function() {
+  getProductNames();
+}
 function reverseFormatNumber(val, locale) {
   var group = new Intl.NumberFormat(locale).format(1111).replace(/1/g, '');
   var decimal = new Intl.NumberFormat(locale).format(1.1).replace(/1/g, '');
@@ -7,9 +9,9 @@ function reverseFormatNumber(val, locale) {
   return Number.isNaN(reversedVal) ? 0 : reversedVal;
 }
 
-
 let arr = [];
 let totalAmount = [];
+let itemNamesList = [];
 // let totalSection = document.getElementById('total');
 let totalSection = document.querySelector('.total');
 
@@ -35,6 +37,17 @@ let totalSection = document.querySelector('.total');
   }
 })();
 
+function getProductNames() {
+  let itemNames = document.getElementsByClassName('singeItemName');
+
+  for (let item in itemNames) {
+    let tmp = itemNames[item].innerHTML;
+    if (tmp) {
+      itemNamesList.push(tmp);
+    }
+  }
+}
+
 function validateEmail(email) {
   var reg = /\S+@\S+\.\S+/;
   return reg.test(email);
@@ -59,9 +72,19 @@ function payWithPaystack(e) {
   // let username = document.getElementById('username').value;
   // let email = document.getElementById('email').value;
   // let number = document.getElementById('pnumber').value;
+
   // let userObj = {
   //   username, email, number
   // }
+
+  let data = {
+    name: document.getElementById('username').value,
+    email: document.getElementById('email').value,
+    number: document.getElementById('pnumber').value,
+    productName: itemNamesList,
+    productPrice: parseInt(totalSection.innerText),
+    status: 'pending'
+  };
 
   let handler = PaystackPop.setup({
     key: 'pk_test_436209c086483511b3d8cb318d158bf6b0c0e27e',
@@ -76,6 +99,7 @@ function payWithPaystack(e) {
       let message = 'Payment complete! Reference: ' + response.reference + '\nWe would contact you shortly\nYou would receive a payment receipt via email';
       alert(message);
       localStorage.removeItem("lale:productArray");
+      sessionStorage.setItem("lale:newCustomerOrder", JSON.stringify(data));
       window.location = "/"
     }
   });
@@ -96,39 +120,3 @@ function payWithPaystack(e) {
 //     displayError('email-error');
 //     return;
 //   }
-
-// function makePayment() {
-
-
-//   let finalAmount = parseInt(totalSection.innerText);
-//   const PBFKey = "FLWPUBK_TEST-04f3f5db345653e2882d7589fcc44d99-X";
-//   const txRef = '' + Math.floor((Math.random() * 1000000000) + 1);
-
-//   getpaidSetup({
-//     PBFPubKey: PBFKey,
-//     customer_email: email,
-//     amount: finalAmount,
-//     customer_phone: number,
-//     currency: "NGN",
-//     txref: txRef,
-
-//     onclose: function () {
-//       console.log('closed');
-//     },
-//     callback: function (response) {
-//       flw_ref = response.tx.flwRef;// collect flwRef returned and pass to a server page to complete status check.
-//       console.log("This is the response returned after a charge", response);
-//       if (response.tx.chargeResponse == '00' || response.tx.chargeResponse == '0') {
-
-//         let store = [];
-//         localStorage.setItem("lale:productArray", JSON.stringify(store))
-//         // localStorage.removeItem("lale:productArray");
-//         location.reload();
-//       } else {
-//         console.log('omo')
-//         location.reload();
-//       }
-//     }
-//   });
-
-// }

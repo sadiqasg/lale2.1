@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include partials/head %>
+        <link rel="stylesheet" href="/stylesheets/product-detail.css">
+    </head>
+    <body>
+        <header>
+          <% include partials/menu %>
+        </header>
+        <main class="mt-5 pt-5 container">
+            <h3>Customers</h3>
+            <!-- Tabs navs -->
+            <ul class="nav nav-tabs nav-fill mb-3" id="ex1" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a
+                        class="nav-link active"
+                        id="ex2-tab-1"
+                        data-mdb-toggle="tab"
+                        href="#ex2-tabs-1"
+                        role="tab"
+                        aria-controls="ex2-tabs-1"
+                        aria-selected="true"
+                    >New
+                    </a
+    >
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a
+                        class="nav-link"
+                        id="ex2-tab-2"
+                        data-mdb-toggle="tab"
+                        href="#ex2-tabs-2"
+                        role="tab"
+                        aria-controls="ex2-tabs-2"
+                        aria-selected="false"
+                    >Completed
+                    </a
+    >
+                </li>
+            </ul>
+            <!-- Tabs navs -->
+            <!-- Tabs content -->
+            <div class="tab-content pt-3" id="ex2-content">
+                <div
+                    class="tab-pane fade show active"
+                    id="ex2-tabs-1"
+                    role="tabpanel"
+                    aria-labelledby="ex2-tab-1"
+                >
+                <% if (customers) { %>
+                    <div class="table-responsive">
+                      <table class="table caption-top table-hover table-bordered">
+                        <caption>
+                          New Orders
+                        </caption>
+                        <thead>
+                          <tr>
+                            <th scope="col">S/N</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Number</th>
+                            <th scope="col">Product(s)</th>
+                            <th scope="col">Product Price</th>
+                            <th scope="col">Manage</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% customers.forEach((customer, index) => { %>
+                            <% if (customer.status === "pending") { %>
+                                <tr>
+                                    <th scope="row"><%= index + 1 %></th>
+                                    <td><%= customer.name %></td>
+                                    <td><%= customer.email %></td>
+                                    <td><%= customer.number %></td>
+                                    <td><%= customer.productName %></td>
+                                    <td><%= customer.productPrice %></td>
+                                    <td>
+                                      <% let ref = index + 1 + '/' + customer.email %>
+                                      <a class="btn text-capitalize ripple btn-success btn-sm shadow-none" id="<%= ref %>" onclick="complete(this.id)">Mark as Complete</a>
+                                    </td>
+                                  </tr>
+                            <% } %>
+                          <% }); %>
+                        </tbody>
+                      </table>
+                    </div>
+                  <% } else { %>
+                   <div class="d-flex justify-content-center">
+                     <p>No customers</p>
+                   </div>
+                  <% } %>
+                </div>
+                <div
+                    class="tab-pane fade"
+                    id="ex2-tabs-2"
+                    role="tabpanel"
+                    aria-labelledby="ex2-tab-2"
+                >
+                <% if (customers) { %>
+                    <div class="table-responsive">
+                      <table class="table caption-top table-hover table-bordered">
+                        <caption>
+                          Completed Orders
+                        </caption>
+                        <thead>
+                          <tr>
+                            <th scope="col">S/N</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Number</th>
+                            <th scope="col">Product(s)</th>
+                            <th scope="col">Product Price</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% customers.forEach((customer, index) => { %>
+                            <% if (customer.status === "completed") { %>
+                                <tr>
+                                    <th scope="row"><%= index + 1 %></th>
+                                    <td><%= customer.name %></td>
+                                    <td><%= customer.email %></td>
+                                    <td><%= customer.number %></td>
+                                    <td><%= customer.productName %></td>
+                                    <td><%= customer.productPrice %></td>
+                                  </tr>
+                            <% } %>
+                          <% }); %>
+                        </tbody>
+                      </table>
+                    </div>
+                  <% } else { %>
+                   <div class="d-flex justify-content-center">
+                     <p>No customers</p>
+                   </div>
+                  <% } %>
+                </div>
+            </div>
+            <!-- Tabs content -->
+        </main>
+    </body>
+    <% include partials/script %>
+    <script>
+        function complete(param) {
+            console.log('delivering...', param);
+        }
+    </script>
+</html>
