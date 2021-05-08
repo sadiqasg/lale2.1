@@ -68,16 +68,17 @@
                         <tbody>
                           <% customers.forEach((customer, index) => { %>
                             <% if (customer.status === "pending") { %>
+                              <% let price = customer.productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); %> 
                                 <tr>
-                                    <th scope="row"><%= index + 1 %></th>
+                                    <th scope="row"><%= index  %></th>
                                     <td><%= customer.name %></td>
                                     <td><%= customer.email %></td>
                                     <td><%= customer.number %></td>
                                     <td><%= customer.productName %></td>
-                                    <td><%= customer.productPrice %></td>
+                                    <td>₦ <%= price %></td>
                                     <td>
-                                      <% let ref = index + 1 + '/' + customer.email %>
-                                      <a class="btn text-capitalize ripple btn-success btn-sm shadow-none" id="<%= ref %>" onclick="complete(this.id)">Mark as Complete</a>
+                                      <% let ref = index + 1 + '-' + customer.email %>
+                                      <a class="btn text-capitalize ripple btn-success btn-sm shadow-none" href="/customers/<%= ref %>">Mark as Complete</a>
                                     </td>
                                   </tr>
                             <% } %>
@@ -105,7 +106,6 @@
                         </caption>
                         <thead>
                           <tr>
-                            <th scope="col">S/N</th>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Number</th>
@@ -116,13 +116,13 @@
                         <tbody>
                           <% customers.forEach((customer, index) => { %>
                             <% if (customer.status === "completed") { %>
+                              <% let price = customer.productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); %> 
                                 <tr>
-                                    <th scope="row"><%= index + 1 %></th>
                                     <td><%= customer.name %></td>
                                     <td><%= customer.email %></td>
                                     <td><%= customer.number %></td>
                                     <td><%= customer.productName %></td>
-                                    <td><%= customer.productPrice %></td>
+                                    <td>₦ <%= price %></td>
                                   </tr>
                             <% } %>
                           <% }); %>
@@ -140,9 +140,4 @@
         </main>
     </body>
     <% include partials/script %>
-    <script>
-        function complete(param) {
-            console.log('delivering...', param);
-        }
-    </script>
 </html>

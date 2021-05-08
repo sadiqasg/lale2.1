@@ -3,16 +3,43 @@
     "name": "new customer",
     "email": "a@b.c",
     "number": 123,
-    "productName": ["john","jane"],
+    "productName": [
+      "john",
+      "jane"
+    ],
     "productPrice": 123,
-    "status": "completed"
+    "status": "pending"
   },
   {
     "name": "jack sparrow",
     "email": "j@s.c",
     "number": 123,
-    "productName": ["ship","sword"],
+    "productName": "ship,sword",
     "productPrice": 123,
     "status": "pending"
+  },
+  {
+    "name": "bruce wayne",
+    "email": "b@thebat.com",
+    "number": 123,
+    "productName": " bat mobile, mask",
+    "productPrice": 123,
+    "status": "completed"
+  },
+  {
+    "name": "bruno fernandes",
+    "email": "bfern@man.utd",
+    "number": "18",
+    "productName": " 3 seater, frame",
+    "productPrice": "31000",
+    "status": "pending"
+  },
+  {
+    "name": "another cust",
+    "email": "g@s.c",
+    "number": 123,
+    "productName": "ship,sword",
+    "productPrice": 123,
+    "status": "completed"
   }
 ]

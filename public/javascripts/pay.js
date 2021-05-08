@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
   getProductNames();
 }
 function reverseFormatNumber(val, locale) {
@@ -43,7 +43,7 @@ function getProductNames() {
   for (let item in itemNames) {
     let tmp = itemNames[item].innerHTML;
     if (tmp) {
-      itemNamesList.push(tmp);
+      itemNamesList.push(' ' + tmp);
     }
   }
 }
@@ -66,25 +66,15 @@ function displayError(id) {
 const paymentForm = document.getElementById('paymentForm');
 paymentForm.addEventListener("submit", payWithPaystack, false);
 
-function payWithPaystack(e) {
-  e.preventDefault();
+function payWithPaystack(evt) {
+  evt.preventDefault();
 
-  // let username = document.getElementById('username').value;
-  // let email = document.getElementById('email').value;
-  // let number = document.getElementById('pnumber').value;
-
-  // let userObj = {
-  //   username, email, number
-  // }
-
-  let data = {
-    name: document.getElementById('username').value,
-    email: document.getElementById('email').value,
-    number: document.getElementById('pnumber').value,
-    productName: itemNamesList,
-    productPrice: parseInt(totalSection.innerText),
-    status: 'pending'
-  };
+  document.getElementById("cname").value = document.getElementById('username').value;
+  document.getElementById("cemail").value = document.getElementById('email').value;
+  document.getElementById("cnumber").value = document.getElementById('pnumber').value;
+  document.getElementById("cpname").value = itemNamesList;
+  document.getElementById("cpprice").value = parseInt(totalSection.innerText);
+  document.getElementById("submit").click();
 
   let handler = PaystackPop.setup({
     key: 'pk_test_436209c086483511b3d8cb318d158bf6b0c0e27e',
@@ -96,11 +86,10 @@ function payWithPaystack(e) {
       alert('Window closed.');
     },
     callback: function (response) {
-      let message = 'Payment complete! Reference: ' + response.reference + '\nWe would contact you shortly\nYou would receive a payment receipt via email';
+      let message = 'Payment complete! Reference: ' + response.reference + '\n\nWe would contact you shortly!\nDo check your email for your payment receipt';
       alert(message);
       localStorage.removeItem("lale:productArray");
-      sessionStorage.setItem("lale:newCustomerOrder", JSON.stringify(data));
-      window.location = "/"
+      window.location = "/cart"
     }
   });
 
