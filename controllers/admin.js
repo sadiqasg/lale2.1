@@ -12,6 +12,7 @@ const storage = multer.diskStorage({
 const uploadImg = multer({ storage: storage }).any('image');
 
 const getAllProducts = (req, res, next) => {
+  console.log('admin req', req.cookies);
   Product.find({}, (err, data) => {
     if (err) {
       return res.send({ "Failed": err });
