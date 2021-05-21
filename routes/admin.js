@@ -25,7 +25,7 @@ router.get('/create', function (req, res, next) {
 router.post('/', adminController.uploadImg, adminController.postProduct);
 
 router.get('/',  verifyToken, adminController.getAllProducts);
-router.get('/:id', verifyToken, adminController.getSingleProduct);
+router.get('/:id', adminController.getSingleProduct);
 
 router.get('/delete/:id', adminController.deleteProduct);
 // router.get('/delete/all', adminController.absoluteCancel);
