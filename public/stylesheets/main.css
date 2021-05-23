@@ -146,7 +146,7 @@ body {
 
 @media (max-width: 767px) {
   header {
-    background-color: var(--c-beige);
+    background-color: rgba(240, 230, 140, 0.5);
   }
   .home-text {
     margin-top: 20px;
@@ -202,7 +202,7 @@ body {
   .header-img {
     display: block;
     width: 600px;
-    height: 500px;
+    height: 400px;
     margin-top: 1em;
   }
   .section-right {
