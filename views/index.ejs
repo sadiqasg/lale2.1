@@ -3,6 +3,11 @@
 <head>
  <% include partials/head %> 
  <link rel="stylesheet" href="./stylesheets/main.css">
+ <style>
+     body {
+         width: 100vw;
+     }
+ </style>
 </head>
 <body>
   <header>
@@ -14,7 +19,7 @@
                   <div class="flex-column">
                       <h1 class="mb-3 header-1">Lalehousehold</h1>
                       <h4 class="mb-3 header-3">Your one-stop shop for all things household</h4>
-                      <a class="btn btn-red">shop now</a>
+                      <a class="btn btn-red shadow-none" href="#categories">shop now</a>
                   </div>
               </div>
               <div class="col-md">
@@ -32,18 +37,16 @@
             <p class="col-6 text-bg d-flex align-items-center text-light">Let's make your house a home!</p>
         </div>
     </section>
-    <section class="conatainer mt-3">
+    <section class="conatainer mt-3" id="categories">
         <div class="row">
             <div class="col-md-7">
                 <figure class="figure">
                     <img
                         src="/images/sofa.jpg"
-                        data-aos="fade-down"
-                        data-aos-duration="1500"
                         class="figure-img img-fluid rounded shadow-3 mb-3"
                         alt="sofa"
                     >
-                    <figcaption class="figure-caption" data-aos="fade-up" data-aos-duration="2000">
+                    <figcaption class="figure-caption">
                         <a class="figure-link" href="/homedeco">
                             Home Deco
                             <span class="pull-right">
@@ -73,12 +76,10 @@
                 <figure class="figure">
                     <img
                         src="/images/kitchen.jpg"
-                        data-aos="fade-right"
-                        data-aos-duration="1500"
                         class="figure-img img-fluid rounded shadow-3 mb-3"
                         alt="..."
                     >
-                    <figcaption class="figure-caption" data-aos="fade-left" data-aos-duration="2000">
+                    <figcaption class="figure-caption">
                         <a class="figure-link" href="/kitchen">
                             Kitchen Collection
                             <span class="pull-right">
@@ -94,18 +95,17 @@
             </div>
         </div>
     </section>
-    <section class="conatainer mt-5 pt-5">
+    <hr>
+    <section class="conatainer pt-5">
         <div class="row py-5">
             <div class="col-md-6">
                 <figure class="figure">
                     <img
                         src="/images/pillows.jpg"
-                        data-aos="fade-left"
-                        data-aos-duration="1500"
                         class="figure-img img-fluid rounded shadow-3 mb-3"
                         alt="..."
                     >
-                    <figcaption class="figure-caption" data-aos="fade-right" data-aos-duration="2000">
+                    <figcaption class="figure-caption">
                         <a class="figure-link" href="">
                             Pillows
                             <span class="pull-right">
@@ -119,12 +119,10 @@
                 <figure class="figure">
                     <img
                         src="/images/chair.jpg"
-                        data-aos="zoom-in"
-                        data-aos-duration="1500"
                         class="figure-img img-fluid rounded shadow-3 mb-3"
                         alt="..."
                     >
-                    <figcaption class="figure-caption" data-aos="zoom-out" data-aos-duration="2000">
+                    <figcaption class="figure-caption">
                         <a class="figure-link" href="">
                             & More
                             <span class="pull-right">

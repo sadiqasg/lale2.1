@@ -11,6 +11,7 @@
 body {
   background-color: whitesmoke;
   font-family: 'Lato', sans-serif;
+  scroll-behavior: smooth;
 }
 
 .head {
@@ -139,7 +140,14 @@ body {
   color: var(--c-link-dark);
 }
 
+.show-on-mobile {
+  display: none;
+}
+
 @media (max-width: 767px) {
+  header {
+    background-color: var(--c-beige);
+  }
   .home-text {
     margin-top: 20px;
   }
