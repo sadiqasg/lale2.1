@@ -66,15 +66,15 @@ function displayError(id) {
 const paymentForm = document.getElementById('paymentForm');
 paymentForm.addEventListener("submit", payWithPaystack, false);
 
-function payWithPaystack(evt) {
-  evt.preventDefault();
+function payWithPaystack(event) {
+  event.preventDefault();
 
   document.getElementById("cname").value = document.getElementById('username').value;
   document.getElementById("cemail").value = document.getElementById('email').value;
   document.getElementById("cnumber").value = document.getElementById('pnumber').value;
   document.getElementById("cpname").value = itemNamesList;
   document.getElementById("cpprice").value = parseInt(totalSection.innerText);
-  document.getElementById("submit").click();
+  // document.getElementById("submit").click();
 
   let handler = PaystackPop.setup({
     key: 'pk_test_436209c086483511b3d8cb318d158bf6b0c0e27e',
@@ -89,7 +89,10 @@ function payWithPaystack(evt) {
       let message = 'Payment complete! Reference: ' + response.reference + '\n\nWe would contact you shortly!\nDo check your email for your payment receipt';
       alert(message);
       localStorage.removeItem("lale:productArray");
-      window.location = "/cart"
+      setTimeout(() => {
+        document.getElementById("submit").click();
+      }, 1500);
+      // window.location = "/cart"
     }
   });
 

@@ -14,6 +14,9 @@
     <h4 class="mt-0 mb-3">Cart | <span class="text-beige">Checkout</span> </h4>
     <hr/>
     <ul class="list-group list-group-flush product-array">
+      <section id="empty-container-section">
+        <p>Cart Is Empty...</p>
+      </section>
     </ul>
     <hr/>
     <section class="container total-container" style="display: none;">
@@ -66,7 +69,8 @@
                     <input type="number" id="pnumber" class="form-control" required />
                     <label class="form-label" for="pnumber">Phone number</label>
                   </div>
-                  <button class="btn col-4 btn-success" onclick="payWithPaystack()">Pay Now</button>
+                  <!-- <button type="button" class="btn col-4 btn-success" onclick="payWithPaystack()">Pay Now</button> -->
+                  <button type="submit" class="btn col-4 btn-success">Pay Now</button>
                 </form>
               </div>
             </div>
@@ -91,4 +95,5 @@
 <script src="/javascripts/cart.js"></script>
 <script src="/javascripts/pay.js"></script>
 
+<% include ../partials/footer %>
 </html>

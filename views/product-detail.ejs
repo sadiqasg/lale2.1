@@ -92,18 +92,19 @@
         </div>
     </div>
   </main>
+  <% include partials/script %>
+  <script src="/javascripts/productDetail.js"></script>
+  <script src="/javascripts/addProductToCart.js"></script>
+  <script src="/javascripts/cart.js"></script>
+  <script>
+      function addID() {
+          let currentURL = window.location.pathname;
+          id = currentURL.substring(currentURL.lastIndexOf('/') + 1);
+          
+          addProductToCart(id);
+          
+        }
+        </script>
+<% include partials/footer %>
 </body>
-<% include partials/script %>
-<script src="/javascripts/productDetail.js"></script>
-<script src="/javascripts/addProductToCart.js"></script>
-<script src="/javascripts/cart.js"></script>
-<script>
-    function addID() {
-        let currentURL = window.location.pathname;
-        id = currentURL.substring(currentURL.lastIndexOf('/') + 1);
-        
-        addProductToCart(id);
-        
-    }
-</script>
 </html>
