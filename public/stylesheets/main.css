@@ -144,6 +144,10 @@ body {
   display: none;
 }
 
+#copy {
+  background-color: var(--c-red);
+}
+
 @media (max-width: 767px) {
   header {
     background-color: rgba(240, 230, 140, 0.5);
